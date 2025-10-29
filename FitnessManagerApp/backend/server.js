@@ -11,7 +11,7 @@ app.use(express.json());
 
 app.get('/users', async (req, res) => {
   try {
-    const users = await sql`SELECT * FROM clienti WHERE nume = 'Pedro'`;
+    const users = await sql`SELECT * FROM clienti`;
     res.json(users);
   } catch (err) {
     console.error(err);
