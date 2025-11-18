@@ -1,54 +1,138 @@
-/* 1. Use a more-intuitive box-sizing model */
+/* ==========================
+   CSS VARIABLES (ROOT)
+   ========================== */
+:root {
+  /* Fonts */
+  --font-primary: 'Montserrat', sans-serif;
+  --font-secondary: 'Montserrat Subrayada', sans-serif;
+  --font-ios-regular: 'SF Pro', sans-serif;
+
+  /* iOS typography */
+  --headline-font: var(--font-ios-regular);
+  --headline-size: 28px;
+  --headline-line-height: 34px;
+
+  --footnote-font: var(--font-ios-regular);
+  --footnote-size: 12px;
+  --footnote-line-height: 16px;
+
+  /* Colors */
+  --color-primary: #AC3500;
+  --color-secondary: #070707;
+  --color-text: #000000;
+}
+
+/* ==========================
+   FONT IMPORTS
+   ========================== */
+/* Montserrat */
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./assets/fonts/Montserrat-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./assets/fonts/Montserrat-Medium.ttf') format('truetype');
+  font-weight: 500;
+}
+
+/* Montserrat Subrayada */
+@font-face {
+  font-family: 'Montserrat Subrayada';
+  src: url('./assets/fonts/MontserratSubrayada-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat Subrayada';
+  src: url('./assets/fonts/MontserratSubrayada-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* SF Pro */
+@font-face {
+  font-family: 'SF Pro';
+  src: url('./assets/fonts/SFPro-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+/* ==========================
+   BASE RESET / GLOBAL STYLES
+   ========================== */
+/* Box-sizing */
 *, *::before, *::after {
   box-sizing: border-box;
-}
-
-/* 2. Remove default margin */
-* {
   margin: 0;
+  padding: 0;
 }
 
-/* 3. Enable keyword animations */
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    interpolate-size: allow-keywords;
-  }
-}
-
+/* Body */
 body {
-  /* 4. Add accessible line-height */
+  font-family: var(--font-primary);
+  background-color: var(--color-background);
+  color: var(--color-text);
   line-height: 1.5;
-  /* 5. Improve text rendering */
   -webkit-font-smoothing: antialiased;
 }
 
-/* 6. Improve media defaults */
+/* Media elements */
 img, picture, video, canvas, svg {
   display: block;
   max-width: 100%;
 }
 
-/* 7. Inherit fonts for form controls */
+/* Form controls inherit fonts */
 input, button, textarea, select {
   font: inherit;
 }
 
-/* 8. Avoid text overflows */
+/* Text overflow */
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
+  word-break: break-word;
 }
 
-/* 9. Improve line wrapping */
-p {
-  text-wrap: pretty;
-}
-h1, h2, h3, h4, h5, h6 {
-  text-wrap: balance;
-}
-
-/*
-  10. Create a root stacking context
-*/
+/* Root stacking context */
 #root, #__next {
   isolation: isolate;
+}
+
+/* ==========================
+   IOS TYPOGRAPHY CLASSES
+   ========================== */
+.headline-regular {
+  font-family: var(--headline-font);
+  font-weight: 400;
+  font-size: var(--headline-size);
+  line-height: var(--headline-line-height);
+}
+
+.footnote-emphasized {
+  font-family: var(--footnote-font);
+  font-weight: 600;
+  font-size: var(--footnote-size);
+  line-height: var(--footnote-line-height);
+}
+
+/* ==========================
+   UTILITY CLASSES (OPTIONAL)
+   ========================== */
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-secondary {
+  color: var(--color-secondary);
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-secondary {
+  background-color: var(--color-secondary);
 }
