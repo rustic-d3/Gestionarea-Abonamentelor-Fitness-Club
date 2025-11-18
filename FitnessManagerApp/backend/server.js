@@ -28,4 +28,14 @@ app.get('/full-paid-subscriptions', async (req, res) => {
   }
 });
 
+app.get('/full-report', async (req, res) => {
+  try {
+    const raport = await sql`SELECT * FROM raport_abonamente_detaliat();`;
+    res.json(raport);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Database error');
+  }
+});
+
 app.listen(3001, () => console.log('Server running on port 3001'));

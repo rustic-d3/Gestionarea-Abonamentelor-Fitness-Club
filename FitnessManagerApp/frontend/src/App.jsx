@@ -4,6 +4,7 @@ import './App.css'
 import HomePage from './pages/HomePage';
 import Clients from './pages/Clients';
 import FullPaidClients from './pages/FullPaidClients';
+import FullReportPage from './pages/FullReportPage';
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path="/clients" element={<Clients />} />
           <Route path="/full-paid" element={<FullPaidClients />} />
+          <Route path="/full-report" element={<FullReportPage />} />
             
         </Routes>
       </BrowserRouter>
