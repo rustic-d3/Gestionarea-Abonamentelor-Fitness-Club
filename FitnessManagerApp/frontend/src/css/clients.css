@@ -1,0 +1,16 @@
+ul {
+    display: flex;
+    gap: 5%;
+}
+
+ul > li{
+    margin-bottom: 10px;
+    list-style: none;
+}
+ul > li > a{
+    text-decoration: none;
+    color: #070707;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+}

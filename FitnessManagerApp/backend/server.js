@@ -3,6 +3,7 @@ import 'dotenv/config';
 import postgres from 'postgres';
 import cors from 'cors';
 
+
 const app = express();
 const sql = postgres(process.env.DATABASE_URL, { ssl: 'require' });
 

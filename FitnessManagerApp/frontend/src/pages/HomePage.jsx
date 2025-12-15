@@ -1,10 +1,35 @@
 import React from "react";
 import Background1 from "../assets/backgrounds/Background1.jpg"; // check your path
+import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+
+
+
 
 export default function HomePage() {
+  const navigate = useNavigate();
+
+  function redirecting(route) {
+    switch (route) {
+      case "clients":
+        navigate("/clients");
+        break;
+      case "home":
+        navigate("/home");
+        break; 
+      case "services":
+        navigate("/services");
+        break;
+      case "subscriptions":
+        navigate("/subscriptions");
+        break;
+      default:
+        navigate("/sdf");
+    }
+}
+
   return (
     <>
-      {/* Full-page background */}
       <div
         style={{
           backgroundImage: `url(${Background1})`,
@@ -15,7 +40,6 @@ export default function HomePage() {
           padding: "0 50px",
         }}
       >
-        {/* Top-right nav buttons */}
         <div
           style={{
             position: "absolute",
@@ -25,7 +49,7 @@ export default function HomePage() {
             gap: "20px",
           }}
         >
-          <button style={{
+          <button onClick={()=>redirecting("home")} style={{
             fontFamily: "Montserrat",
             fontWeight: 700,
             fontSize: "22.91px",
@@ -36,7 +60,7 @@ export default function HomePage() {
             color: "#AC3500",
             cursor: "pointer",
           }}>ACASĂ</button>
-          <button style={{
+          <button onClick={()=>redirecting("services")} style={{
             fontFamily: "Montserrat",
             fontWeight: 700,
             fontSize: "22.91px",
@@ -47,7 +71,7 @@ export default function HomePage() {
             color: "#070707",
             cursor: "pointer",
           }}>SERVICII</button>
-          <button style={{
+          <button onClick={()=>{ redirecting("clients")}} style={{
             fontFamily: "Montserrat",
             fontWeight: 700,
             fontSize: "22.91px",
@@ -58,7 +82,7 @@ export default function HomePage() {
             color: "#070707",
             cursor: "pointer",
           }}>CLINEȚI</button>
-          <button style={{
+          <button onClick={()=>{redirecting("subscriptions")}} style={{
             fontFamily: "Montserrat",
             fontWeight: 700,
             fontSize: "22.91px",
@@ -71,7 +95,6 @@ export default function HomePage() {
           }}>ABONAMENTE</button>
         </div>
 
-        {/* Left side titles */}
         <div style={{ position: "absolute", top: "208px", left: "151px" }}>
           <h1 style={{
             fontFamily: "Montserrat Subrayada",
