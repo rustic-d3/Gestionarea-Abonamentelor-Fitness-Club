@@ -39,4 +39,10 @@ app.get('/full-report', async (req, res) => {
   }
 });
 
+app.post('/addSubscription', async (req, res) => {
+  const { cnp, subscription, price } = req.body;
+  console.log("Received:", cnp, subscription, price);
+  res.json({ ok: true });
+});
+
 app.listen(3001, () => console.log('Server running on port 3001'));

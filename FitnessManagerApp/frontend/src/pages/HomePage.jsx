@@ -148,7 +148,7 @@ export default function HomePage() {
             }}>unică alături de noi.</p>
           </div>
 
-          <button style={{
+          <button onClick={()=>{redirecting("subscriptions")}} style={{
             marginTop: "30px",
             fontFamily: "Montserrat Subrayada",
             fontWeight: 400,
