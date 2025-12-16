@@ -37,6 +37,15 @@ app.get("/full-report", async (req, res) => {
     res.status(500).send("Database error");
   }
 });
+app.get("/subscriptions", async (req, res) => {
+  try {
+    const raport = await sql`SELECT * FROM abonamente;`;
+    res.json(raport);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Database error");
+  }
+});
 
 app.post("/addSubscription", async (req, res) => {
     const { cnp, subscription, price, finalPrice } = req.body;

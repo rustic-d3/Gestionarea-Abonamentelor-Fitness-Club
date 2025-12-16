@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import Clients from './pages/Clients';
 import FullPaidClients from './pages/FullPaidClients';
 import FullReportPage from './pages/FullReportPage';
+import Services from './pages/Services';
 import Subscriptions from './pages/Subscriptions';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/clients" element={<Clients />} />
         <Route path="/full-paid" element={<FullPaidClients />} />
         <Route path="/full-report" element={<FullReportPage />} />
+        <Route path="/services" element={<Services />} />
         <Route path="/subscriptions" element={<Subscriptions />} />
       </Routes>
     </BrowserRouter>

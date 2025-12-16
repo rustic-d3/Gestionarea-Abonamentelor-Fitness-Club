@@ -1,9 +1,14 @@
 import AllUsersTable from '../components/AllUsersTable'
 import '../css/clients.css'
+import Header from '../components/Header.jsx'
 export default function Clients(){
     return(
         <>
-        <ul>
+        <Header/>
+        <div style={{
+            marginTop: "100px",
+        }}>
+            <ul>
             <li>
                 <a href="/full-paid">Clienti fideli</a>
                 
@@ -11,6 +16,9 @@ export default function Clients(){
             <li><a href="/full-report">Raport detaliat</a></li>
         </ul>
         <AllUsersTable></AllUsersTable>
+
+        </div>
+        
         </>
     )
 }
