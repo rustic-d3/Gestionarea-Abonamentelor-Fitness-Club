@@ -9,14 +9,16 @@ export default function Subscriptions() {
     const [cnp, setCnp] = useState("");
     const [subscription, setSubscription] = useState("");
     const [currentPrice, setCurrentPrice] = useState(0);
+    const [finalPrice, setFinalPrice] = useState(0);
 
     async function sendData(){
         console.log("Sending data to server...");
         console.log(cnp);
         console.log(subscription);
         console.log(currentPrice);
+        console.log(finalPrice);
         try {
-            const response = await axios.post('http://localhost:3001/addSubscription', { cnp: cnp, subscription: subscription, price: currentPrice });
+            const response = await axios.post('http://localhost:3001/addSubscription', { cnp: cnp, subscription: subscription, price: currentPrice, finalPrice: finalPrice });
             console.log("Server response:", response.data);
         } catch (error) {
             console.error("Error sending CNP:", error);
@@ -179,7 +181,7 @@ export default function Subscriptions() {
             ✕
           </button>
 
-          <h2>Introduceți CNP Client:</h2>
+          <h2>Introduceți CNP Client si suma incasata:</h2>
 
           <button onClick={sendData}  className="icon-btn primary">
             ↑
@@ -189,9 +191,15 @@ export default function Subscriptions() {
         {/* Search */}
         <input
           type="text"
-          placeholder="Search"
+          placeholder="CNP"
           className="search-input"
           onChange={(value)=>setCnp(value.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Suma incasata"
+          className="search-input"
+          onChange={(value)=>setFinalPrice(value.target.value)}
         />
       </div>
     </div>
