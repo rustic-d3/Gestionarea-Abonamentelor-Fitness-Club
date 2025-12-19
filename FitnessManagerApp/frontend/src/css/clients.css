@@ -1,6 +1,7 @@
 ul {
     display: flex;
-    gap: 5%;
+    gap: 10px;
+    margin-bottom: 5%;
 }
 
 ul > li{
@@ -13,4 +14,96 @@ ul > li > a{
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     font-size: 18px;
+}
+
+/* Import your root variables at the top */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 40px;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.popup {
+  width: 90%;
+  max-width: 500px; /* Adjusted for better form layout */
+  padding: 25px;
+  border-radius: 28px;
+  background: linear-gradient(180deg, #f6d6b5, #f2b37c);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.popup-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #3b2b1f;
+  font-family: var(--font-family);
+}
+
+.icon-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.5);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+.icon-btn:hover {
+  background: rgba(255,255,255,0.8);
+}
+
+.icon-btn.primary {
+  background: #ff7a66;
+  color: white;
+  box-shadow: 0 4px 12px rgba(255, 122, 102, 0.4);
+}
+
+/* Layout for Nume/Prenume on same line */
+.input-group {
+  display: flex;
+  gap: 10px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 18px;
+  border: 1px solid transparent;
+  font-size: 15px;
+  background: rgba(255, 255, 255, 0.6);
+  outline: none;
+  margin-bottom: 12px;
+  font-family: var(--font-family);
+  box-sizing: border-box;
+  transition: border 0.2s, background 0.2s;
+}
+
+.search-input:focus {
+  border: 1px solid #ff7a66;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.search-input::placeholder {
+  color: #8a7a6a;
 }

@@ -222,7 +222,6 @@ export default function Services() {
       {showPopup && (
         <div className="overlay">
           <div className="popup">
-            {/* Header */}
             <div className="popup-header">
               <button className="icon-btn" onClick={() => setShowPopup(false)}>
                 ✕
@@ -235,7 +234,6 @@ export default function Services() {
               </button>
             </div>
 
-            {/* Search */}
             <input
               type="text"
               placeholder="CNP"
