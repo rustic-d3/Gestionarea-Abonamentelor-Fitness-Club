@@ -46,6 +46,25 @@ app.get("/subscriptions", async (req, res) => {
     res.status(500).send("Database error");
   }
 });
+app.get("/clienti-eligibili", async (req, res) => {
+  try {
+    const raport = await sql`SELECT * FROM afiseaza_raport_clienti();`;
+    res.json(raport);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Database error");
+  }
+});
+
+app.get("/bad-client", async (req, res) => {
+  try {
+    const raport = await sql`SELECT * FROM get_client_cel_mai_restant();`;
+    res.json(raport);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Database error");
+  }
+});
 
 app.post("/addSubscription", async (req, res) => {
   const { cnp, subscription, price, finalPrice } = req.body;
