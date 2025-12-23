@@ -7,12 +7,12 @@ export default function HomePage() {
       {/* Full-page background */}
       <div
         style={{
-          backgroundImage: `url(${Background1})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          minHeight: "100vh",
-          position: "relative",
-          padding: "0 50px",
+            backgroundImage: `url(${Background1})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            minHeight: "100vh",
+            position: "relative",
+            padding: "0 50px",
         }}
       >
         {/* Top-right nav buttons */}
