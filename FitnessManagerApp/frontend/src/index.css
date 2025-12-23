@@ -136,3 +136,93 @@ p, h1, h2, h3, h4, h5, h6 {
 .bg-secondary {
   background-color: var(--color-secondary);
 }
+
+/* Button Base Styling */
+.btn {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  padding: 0.8rem 1.8rem;
+  border-radius: 20px; /* Matching the card's rounded aesthetic */
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  outline: none;
+}
+
+/* 1. Primary Button (The Salmon/Coral theme) */
+.btn-primary {
+  background-color: var(--button-color); /* #EBB6A8 */
+  color: #4a2c2c;
+  box-shadow: 0 4px 15px rgba(235, 182, 168, 0.4);
+}
+
+.btn-primary:hover {
+  background-color: #f2c7bc; /* Slightly lighter version */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(235, 182, 168, 0.6);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* 2. Glass Button (Matching the card background) */
+.btn-glass {
+  background: var(--card-bg); /* rgba(255, 255, 255, 0.45) */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: var(--card-border);
+  color: var(--text-color);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+/* 3. Accent Button (Using the Vibrant Red) */
+.btn-accent {
+  background-color: #ff7a66;
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 122, 102, 0.3);
+}
+
+.btn-accent:hover {
+  background-color: #E63946; /* From your gradient variables */
+  transform: scale(1.05);
+}
+
+/* 4. Icon/Circular Button (Like your popup close button) */
+.btn-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-color);
+  font-size: 1.2rem;
+}
+
+.btn-icon:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: rotate(90deg);
+}
+
+/* Disabled State */
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+
+

@@ -1,9 +1,10 @@
-import FullReportTable from "../components/FullReportTable";
-import Header from "../components/Header.jsx";
-import { useState } from "react";
-import axios from "axios";
+import React from 'react'
+import GoodClientsTable from '../components/GoodClientsTable.jsx'
+import Header from '../components/Header.jsx'
+import { useState } from 'react'
+import axios from 'axios'
 
-export default function FullReportPage() {
+export default function GoodClientsPage() {
     const [showPopup, setShowPopup] = useState(false);
   const [formData, setFormData] = useState({
     cnp: "",
@@ -36,27 +37,27 @@ export default function FullReportPage() {
   }
   return (
     <div>
-      <Header></Header>
-      <div
-        style={{
-          marginTop: "100px",
-        }}
-      >
-        <ul>
-          <li>
-            <a href="/full-paid">Clienti fideli</a>
-          </li>
-          <li>
-            <a href="/full-report">Raport detaliat</a>
-          </li>
-          <li>
-            <a href="/good-clients">Clienti VIP</a>
-          </li>
-          <button onClick={() => setShowPopup(true)} className="btn">Adauga client</button>
-        </ul>
-        <FullReportTable />
-      </div>
-      {showPopup && (
+          <Header></Header>
+          <div
+            style={{
+              marginTop: "100px",
+            }}
+          >
+            <ul>
+              <li>
+                <a href="/full-paid">Clienti fideli</a>
+              </li>
+              <li>
+                <a href="/full-report">Raport detaliat</a>
+              </li>
+              <li>
+                <a href="/good-clients">Clienti VIP</a>
+              </li>
+              <button onClick={() => setShowPopup(true)} className="btn">Adauga client</button>
+            </ul>
+            <GoodClientsTable></GoodClientsTable>
+          </div>
+          {showPopup && (
         <div className="overlay">
           <div className="popup form-wide">
             <div className="popup-header">
@@ -130,6 +131,6 @@ export default function FullReportPage() {
           </div>
         </div>
       )}
-    </div>
-  );
+        </div>
+  )
 }
