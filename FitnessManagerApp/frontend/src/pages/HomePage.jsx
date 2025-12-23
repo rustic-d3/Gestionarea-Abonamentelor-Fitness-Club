@@ -64,12 +64,13 @@ export default function HomePage() {
           </p>
         </div>
 
-      <button 
-        onClick={() => redirecting("services")} 
-        className="btn-ios-hero"
-      >
-        ÎNCEPE AZI!
-      </button>
+        <button 
+          onClick={() => goTo("services")} 
+          className="btn-ios-hero"
+          style={{ marginTop: "30px" }} // Adăugat puțin spațiu
+        >
+          ÎNCEPE AZI!
+        </button>
       </div>
     </div>
   );
