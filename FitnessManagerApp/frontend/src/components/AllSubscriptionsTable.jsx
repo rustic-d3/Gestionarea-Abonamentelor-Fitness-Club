@@ -11,22 +11,39 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const columns = [
-  { width: 100, label: 'CNP', dataKey: 'cnp' },
-  { width: 100, label: 'Serviciu', dataKey: 'serviciu' },
-  { width: 100, label: 'Data', dataKey: 'data' },
-  { width: 150, label: 'Pret', dataKey: 'pret', numeric: true },
-  { width: 100, label: 'Suma Incasata', dataKey: 'suma_incasata' },
+  { width: 130, label: 'CNP Client', dataKey: 'cnp' },
+  { width: 120, label: 'Serviciu', dataKey: 'serviciu' },
+  { width: 120, label: 'Data', dataKey: 'data' },
+  { width: 120, label: 'Preț (RON)', dataKey: 'pret', numeric: true },
+  { width: 140, label: 'Suma Încasată', dataKey: 'suma_incasata', numeric: true },
 ];
 
 const VirtuosoTableComponents = {
   Scroller: React.forwardRef((props, ref) => (
-    <TableContainer component={Paper} {...props} ref={ref} />
+    <TableContainer 
+      {...props} 
+      ref={ref} 
+      sx={{ 
+        backgroundColor: 'transparent', 
+        boxShadow: 'none',
+        '&::-webkit-scrollbar': { width: '8px' },
+        '&::-webkit-scrollbar-thumb': { background: 'rgba(0,0,0,0.1)', borderRadius: '10px' }
+      }} 
+    />
   )),
   Table: (props) => (
     <Table {...props} sx={{ borderCollapse: 'separate', tableLayout: 'fixed' }} />
   ),
   TableHead: React.forwardRef((props, ref) => <TableHead {...props} ref={ref} />),
-  TableRow,
+  TableRow: ({ item: _item, ...props }) => (
+    <TableRow 
+      {...props} 
+      sx={{ 
+        '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.25) !important' },
+        transition: 'background-color 0.2s ease'
+      }} 
+    />
+  ),
   TableBody: React.forwardRef((props, ref) => <TableBody {...props} ref={ref} />),
 };
 
@@ -39,7 +56,15 @@ function fixedHeaderContent() {
           variant="head"
           align={column.numeric ? 'right' : 'left'}
           style={{ width: column.width }}
-          sx={{ backgroundColor: 'background.paper' }}
+          sx={{ 
+            backgroundColor: 'transparent',
+            color: 'rgba(0, 0, 0, 0.5)', 
+            fontWeight: 800,
+            fontSize: '11px',
+            textTransform: 'uppercase',
+            borderBottom: '1px solid rgba(0, 0, 0, 0.05)',
+            fontFamily: 'Montserrat, sans-serif'
+          }}
         >
           {column.label}
         </TableCell>
@@ -55,8 +80,19 @@ function rowContent(_index, row) {
         <TableCell
           key={column.dataKey}
           align={column.numeric ? 'right' : 'left'}
+          sx={{ 
+            borderBottom: '1px solid rgba(0, 0, 0, 0.05)',
+            fontWeight: 600,
+            color: '#3b2b1f',
+            fontFamily: 'Montserrat, sans-serif',
+            padding: '18px 15px'
+          }}
         >
-          {row[column.dataKey]}
+          {column.dataKey === 'data' 
+            ? new Date(row[column.dataKey]).toLocaleDateString('ro-RO') 
+            : column.numeric 
+              ? `${row[column.dataKey]} RON` 
+              : row[column.dataKey]}
         </TableCell>
       ))}
     </React.Fragment>
@@ -79,21 +115,20 @@ export default function AllSubscriptionsTable() {
       });
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-
-  // Build rows from subscriptions data
-  const rows = subscriptions.map(sub => ({
-    cnp: sub.cnp,
-    serviciu: sub.serviciu,
-    data: sub.data,
-    pret: sub.pret,
-    suma_incasata: sub.suma_incasata,
-  }));
+  if (loading) return <div style={{ color: '#fff', padding: '20px' }}>Se încarcă istoricul abonamentelor...</div>;
 
   return (
-    <Paper style={{ height: 400, width: '100%' }}>
+    <Paper 
+      sx={{ 
+        height: 500, 
+        width: '100%', 
+        backgroundColor: 'transparent', 
+        boxShadow: 'none',
+        backgroundImage: 'none'
+      }}
+    >
       <TableVirtuoso
-        data={rows}
+        data={subscriptions}
         components={VirtuosoTableComponents}
         fixedHeaderContent={fixedHeaderContent}
         itemContent={rowContent}

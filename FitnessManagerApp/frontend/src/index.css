@@ -16,6 +16,44 @@
   --footnote-size: 12px;
   --footnote-line-height: 16px;
 
+  .btn-ios-hero {
+  /* Dimensiuni și Poziționare */
+  margin-top: 30px;
+  padding: 14px 40px;
+  
+  /* Formă de capsulă (iOS Pill Shape) */
+  border-radius: 999px;
+  border: none;
+  
+  /* Culoare și Gradient conform pozei tale */
+  background: linear-gradient(180deg, #FFB149 0%, #FF6B00 100%);
+  color: #000000; /* Text negru pentru contrast pe portocaliu */
+  
+  /* Tipografie */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800; /* Extra Bold ca în Figma */
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  
+  /* Efecte de adâncime */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 
+              inset 0 -2px 5px rgba(0, 0, 0, 0.1);
+  
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Tranziție fluidă tip Apple */
+}
+
+.btn-ios-hero:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
+  filter: brightness(1.1);
+}
+
+.btn-ios-hero:active {
+  transform: scale(0.96);
+}
+
   /* Colors */
   --color-primary: #AC3500;
   --color-secondary: #070707;

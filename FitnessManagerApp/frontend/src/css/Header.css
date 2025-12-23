@@ -1,0 +1,31 @@
+.header-nav {
+  position: absolute;
+  top: 40px;
+  right: 60px;
+  z-index: 1000;
+}
+
+.nav-container {
+  display: flex;
+  gap: 35px; /* Spațierea exactă dintre link-uri */
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #000000;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900; /* Extra Bold ca în Figma */
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  transition: opacity 0.2s ease;
+}
+
+.nav-link:hover {
+  opacity: 0.7;
+}
+
+/* Stilul pentru pagina pe care te afli deja */
+.nav-link.active {
+  color: #FF4E00; /* Un accent portocaliu subtil sau rămâne negru conform designului */
+  position: relative;
+}

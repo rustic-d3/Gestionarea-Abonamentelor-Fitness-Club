@@ -1,104 +1,25 @@
-import React from 'react'
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import '../css/Header.css';
 
 export default function Header() {
-    const navigate = useNavigate();
-  function redirecting(route) {
-    switch (route) {
-      case "clients":
-        navigate("/clients");
-        break;
-      case "home":
-        navigate("/home");
-        break; 
-      case "services":
-        navigate("/services");
-        break;
-      case "subscriptions":
-        navigate("/subscriptions");
-        break;
-      default:
-        navigate("/sdf");
-    }
-}
   return (
-        <div
-        style={{
-          position: "absolute",
-          top: "63px",
-          right: "50px",
-          display: "flex",
-          gap: "20px",
-        }}
-      >
-        <button
-          onClick={() => redirecting("home")}
-          style={{
-            fontFamily: "Montserrat",
-            fontWeight: 700,
-            fontSize: "22.91px",
-            lineHeight: "39.3px",
-            letterSpacing: "-0.32px",
-            background: "transparent",
-            border: "none",
-            color: "#AC3500",
-            cursor: "pointer",
-          }}
-        >
+    <nav className="header-nav">
+      <div className="nav-container">
+        {/* Folosim NavLink pentru a nu da refresh la pagină și pentru clasa 'active' */}
+        <NavLink to="/" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
           ACASĂ
-        </button>
-        <button
-          onClick={() => redirecting("services")}
-          style={{
-            fontFamily: "Montserrat",
-            fontWeight: 700,
-            fontSize: "22.91px",
-            lineHeight: "39.3px",
-            letterSpacing: "-0.32px",
-            background: "transparent",
-            border: "none",
-            color: "#070707",
-            cursor: "pointer",
-          }}
-        >
+        </NavLink>
+        <NavLink to="/services" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
           SERVICII
-        </button>
-        <button
-          onClick={() => {
-            redirecting("clients");
-          }}
-          style={{
-            fontFamily: "Montserrat",
-            fontWeight: 700,
-            fontSize: "22.91px",
-            lineHeight: "39.3px",
-            letterSpacing: "-0.32px",
-            background: "transparent",
-            border: "none",
-            color: "#070707",
-            cursor: "pointer",
-          }}
-        >
-          CLINEȚI
-        </button>
-        <button
-          onClick={() => {
-            redirecting("subscriptions");
-          }}
-          style={{
-            fontFamily: "Montserrat",
-            fontWeight: 700,
-            fontSize: "22.91px",
-            lineHeight: "39.3px",
-            letterSpacing: "-0.32px",
-            background: "transparent",
-            border: "none",
-            color: "#070707",
-            cursor: "pointer",
-          }}
-        >
+        </NavLink>
+        <NavLink to="/clients" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+          CLIENȚI
+        </NavLink>
+        <NavLink to="/subscriptions" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
           ABONAMENTE
-        </button>
+        </NavLink>
       </div>
-  )
+    </nav>
+  );
 }

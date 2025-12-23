@@ -1,117 +1,76 @@
 import React from "react";
-import Background1 from "../assets/backgrounds/Background1.jpg"; // check your path
 import { useNavigate } from "react-router-dom";
-import { useState } from 'react';
-import Header from '../components/Header.jsx'
+import Background1 from "../assets/backgrounds/Background1.jpg";
+import Header from '../components/Header.jsx';
 
-
-
+// Definim un obiect pentru stiluri pentru a curăța return-ul (sau folosim CSS separat)
+const styles = {
+  heroContainer: {
+    backgroundImage: `url(${Background1})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    minHeight: "100vh",
+    display: "flex", // Folosim Flexbox în loc de Absolute pentru responsivitate
+    flexDirection: "column",
+    padding: "0 10%", // Procentual pentru a se adapta la ecran
+  },
+  contentBox: {
+    marginTop: "auto",
+    marginBottom: "auto",
+    maxWidth: "600px"
+  },
+  title: {
+    fontFamily: "'Montserrat Subrayada', sans-serif",
+    fontWeight: 700,
+    fontSize: "clamp(30px, 5vw, 40px)", // Font care se micșorează pe mobil
+    color: "#070707",
+    margin: 0,
+    lineHeight: "1.1"
+  },
+  ctaButton: {
+    marginTop: "30px",
+    fontFamily: "'Montserrat Subrayada', sans-serif",
+    backgroundColor: "#007aff",
+    color: "#ffffff", // Alb pentru contrast mai bun pe albastru
+    padding: "12px 35px",
+    border: "none",
+    borderRadius: "8px",
+    cursor: "pointer",
+    transition: "transform 0.2s",
+  }
+};
 
 export default function HomePage() {
   const navigate = useNavigate();
 
-  function redirecting(route) {
-    switch (route) {
-      case "clients":
-        navigate("/clients");
-        break;
-      case "home":
-        navigate("/home");
-        break; 
-      case "services":
-        navigate("/services");
-        break;
-      case "subscriptions":
-        navigate("/subscriptions");
-        break;
-      default:
-        navigate("/sdf");
-    }
-}
+  // Simplificăm funcția: navigăm direct către ruta primită
+  const goTo = (route) => navigate(`/${route}`);
 
   return (
-    <>
-      <div
-        style={{
-            backgroundImage: `url(${Background1})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            minHeight: "100vh",
-            position: "relative",
-            padding: "0 50px",
-        }}
-      >
-        <Header></Header>
+    <div style={styles.heroContainer}>
+      <Header />
 
-        <div style={{ position: "absolute", top: "208px", left: "151px" }}>
-          <h1 style={{
-            fontFamily: "Montserrat Subrayada",
-            fontWeight: 700,
-            fontSize: "40px",
-            lineHeight: "39.3px",
-            letterSpacing: "-0.32px",
-            color: "#070707",
-            margin: 0
-          }}>POLIGYM</h1>
-
-          <div style={{ marginTop: "130px" }}>
-            <h2 style={{
-              fontFamily: "Montserrat Subrayada",
-              fontWeight: 700,
-              fontSize: "40px",
-              lineHeight: "39.3px",
-              letterSpacing: "-0.32px",
-              color: "#070707",
-              margin: 0
-            }}>ELEVATE YOUR</h2>
-            <h2 style={{
-              fontFamily: "Montserrat Subrayada",
-              fontWeight: 700,
-              fontSize: "40px",
-              lineHeight: "39.3px",
-              letterSpacing: "-0.32px",
-              color: "#070707",
-              margin: 0
-            }}>FITNESS JOURNEY</h2>
-          </div>
-
-          <div style={{ marginTop: "60px" }}>
-            <p style={{
-              fontFamily: "Montserrat",
-              fontWeight: 500,
-              fontSize: "16px",
-              lineHeight: "27px",
-              letterSpacing: "-0.32px",
-              color: "#070707",
-              margin: 0
-            }}>Alătură-te pentru o experință</p>
-            <p style={{
-              fontFamily: "Montserrat",
-              fontWeight: 500,
-              fontSize: "16px",
-              lineHeight: "27px",
-              letterSpacing: "-0.32px",
-              color: "#070707",
-              margin: 0
-            }}>unică alături de noi.</p>
-          </div>
-
-          <button onClick={()=>{redirecting("services")}} style={{
-            marginTop: "30px",
-            fontFamily: "Montserrat Subrayada",
-            fontWeight: 400,
-            fontSize: "17px",
-            lineHeight: "20px",
-            letterSpacing: "-0.32px",
-            backgroundColor: "#007aff",
-            color: "#070707",
-            padding: "10px 30px",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer"
-          }}>ÎNCEPE AZI!</button>
+      <div style={styles.contentBox}>
+        <h1 style={styles.title}>POLIGYM</h1>
+        
+        <div style={{ marginTop: "40px" }}>
+          <h2 style={styles.title}>ELEVATE YOUR</h2>
+          <h2 style={styles.title}>FITNESS JOURNEY</h2>
         </div>
+
+        <div style={{ marginTop: "30px" }}>
+          <p style={{ fontFamily: "Montserrat", fontWeight: 500, color: "#070707" }}>
+            Alătură-te pentru o experiență unică alături de noi.
+          </p>
+        </div>
+
+      <button 
+        onClick={() => redirecting("services")} 
+        className="btn-ios-hero"
+      >
+        ÎNCEPE AZI!
+      </button>
       </div>
-    </>
+    </div>
   );
 }

@@ -1,9 +1,12 @@
-import ClientsFullSubscriptionTable from "../components/ClinetsFullSubscribtionTable";
-import Header from "../components/Header.jsx";
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import { NavLink } from "react-router-dom"; // Navigare fără refresh
+import Header from "../components/Header.jsx";
+import ClientsFullSubscriptionTable from "../components/ClinetsFullSubscribtionTable";
+import "../css/clients.css"; // Presupunem că aici avem stilul Glassmorphism
+
 export default function FullPaidClients() {
-    const [showPopup, setShowPopup] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
   const [formData, setFormData] = useState({
     cnp: "",
     nume: "",
@@ -12,118 +15,88 @@ export default function FullPaidClients() {
     telefon: "",
     disponibil: "",
   });
-  async function sendData() {
-    console.log("Sending data to server...");
-    console.log(formData);
-    try {
-      const response = await axios.post(
-        "http://localhost:3001/addClient",
-        formData
-      );
-      console.log("Server response:", response.data);
-    }catch (error) {
-      console.error("Error sending data:", error);
-      if (error.response) {
-        const errorMessage =
-          error.response.data.details || error.response.data.error;
 
-        alert(errorMessage);
-      } else {
-        alert("Eroare de rețea. Serverul nu a putut fi contactat.");
-      }
+  // Funcție pentru trimiterea datelor cu feedback îmbunătățit
+  async function sendData() {
+    try {
+      const response = await axios.post("http://localhost:3001/addClient", formData);
+      alert("Client adăugat cu succes!");
+      setShowPopup(false); // Închidem modalul după succes
+      window.location.reload(); // Refresh pentru a vedea datele noi în tabel
+    } catch (error) {
+      const errorMessage = error.response?.data?.details || "Eroare la server.";
+      alert(errorMessage);
     }
   }
+
   return (
-    <div>
-      <Header></Header>
-      <div
-        style={{
-          marginTop: "100px",
-        }}
-      >
-        <ul>
-          <li>
-            <a href="/full-paid">Clienti fideli</a>
-          </li>
-          <li>
-            <a href="/full-report">Raport detaliat</a>
-          </li>
-          <li>
-            <a href="/good-clients">Clienti VIP</a>
-          </li>
-          <button onClick={() => setShowPopup(true)} className="btn">Adauga client</button>
-        </ul>
-        <ClientsFullSubscriptionTable></ClientsFullSubscriptionTable>
+    <div className="app-wrapper">
+      <Header />
+      
+      <div className="glass-container">
+        {/* Navigarea de tip Tab-uri iOS */}
+        <div className="report-tabs">
+          <NavLink to="/full-paid" className={({ isActive }) => isActive ? "tab-active" : ""}>
+            Clienți Fideli
+          </NavLink>
+          <NavLink to="/full-report">Raport Detaliat</NavLink>
+          <NavLink to="/good-clients">Clienți VIP</NavLink>
+          <button onClick={() => setShowPopup(true)} className="btn-add-ios">
+            + Adaugă Client
+          </button>
+        </div>
+
+        <div className="panel-header">
+            <h2 className="panel-title">Abonamente Achitate Integral</h2>
+        </div>
+
+        <ClientsFullSubscriptionTable />
       </div>
+
+      {/* MODAL ADĂUGARE CLIENT - Stil iPadOS */}
       {showPopup && (
         <div className="overlay">
           <div className="popup form-wide">
             <div className="popup-header">
-              <button className="icon-btn" onClick={() => setShowPopup(false)}>
-                ✕
-              </button>
-
-              <h2>Înregistrare Client Nou</h2>
-
-              <button onClick={sendData}  className="icon-btn primary" >
-                ↑
-              </button>
+              <button className="icon-btn" onClick={() => setShowPopup(false)}>✕</button>
+              <h2>Înregistrare Client</h2>
+              <button onClick={sendData} className="icon-btn primary">↑</button>
             </div>
 
             <div className="form-container">
               <input
-                name="cnp"
-                type="text"
+                placeholder="CNP (13 cifre)"
                 maxLength="13"
-                placeholder="CNP"
                 className="search-input"
-                onChange= {(e)=> setFormData({...formData, cnp: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, cnp: e.target.value })}
               />
-
               <div className="input-group">
                 <input
-                  name="nume"
-                  type="text"
                   placeholder="Nume"
                   className="search-input"
-                  onChange= {(e)=> setFormData({...formData, nume: e.target.value})}
-                  
+                  onChange={(e) => setFormData({ ...formData, nume: e.target.value })}
                 />
                 <input
-                  name="prenume"
-                  type="text"
                   placeholder="Prenume"
                   className="search-input"
-                  onChange= {(e)=> setFormData({...formData, prenume: e.target.value})}
- 
+                  onChange={(e) => setFormData({ ...formData, prenume: e.target.value })}
                 />
               </div>
-
               <input
-                name="adresa"
-                type="text"
-                placeholder="Adresa"
+                placeholder="Adresă Completă"
                 className="search-input"
-                onChange= {(e)=> setFormData({...formData, adresa: e.target.value})}
-
+                onChange={(e) => setFormData({ ...formData, adresa: e.target.value })}
               />
-
               <input
-                name="telefon"
-                type="text"
                 placeholder="Telefon"
                 className="search-input"
-                onChange= {(e)=> setFormData({...formData, telefon: e.target.value})}
-
+                onChange={(e) => setFormData({ ...formData, telefon: e.target.value })}
               />
-
               <input
-                name="disponibil"
-                type="text"
-                placeholder="Disponibilitate"
+                placeholder="Sold Disponibil (RON)"
+                type="number"
                 className="search-input"
-                onChange= {(e)=> setFormData({...formData, disponibil: e.target.value})}
-
+                onChange={(e) => setFormData({ ...formData, disponibil: e.target.value })}
               />
             </div>
           </div>
