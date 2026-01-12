@@ -297,49 +297,11 @@ export default function Clients() {
                 <div style={{padding: '20px', textAlign: 'center'}}>Se încarcă datele...</div>
               ) : badClientData ? (
                 <>
-                  <div className="client-identity" style={{textAlign: 'center', marginBottom: '20px'}}>
-                    <span style={{opacity: 0.6, fontSize: '12px', fontWeight: '800', textTransform: 'uppercase'}}>
-                      Cel mai restant client
-                    </span>
-                    <h1 className="bad-client-name" style={{margin: '5px 0', fontSize: '26px'}}>
-                      {badClientData.nume} {badClientData.prenume}
-                    </h1>
-                    <p style={{fontWeight: '600', opacity: 0.8}}>CNP: {badClientData.cnp}</p>
-                  </div>
-
-                  <div style={{display: 'flex', justifyContent: 'center', marginBottom: '25px'}}>
-                    <div style={{background: 'rgba(217, 83, 79, 0.1)', padding: '15px 25px', borderRadius: '15px', textAlign: 'center'}}>
-                      <span style={{color: '#d9534f', fontSize: '32px', fontWeight: '900', display: 'block', lineHeight: '1'}}>
-                        {badClientData.numar_abonamente_neachitate}
-                      </span>
-                      <span style={{color: '#d9534f', fontSize: '12px', fontWeight: '700', textTransform: 'uppercase'}}>
-                        Abonamente Neachitate
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="progress-section" style={{marginTop: '10px'}}>
-                    <div style={{display: 'flex', justifyContent: 'space-between', fontWeight: '700', marginBottom: '8px', fontSize: '14px'}}>
-                      <span>Procent Achitat din Total:</span>
-                      <span>{badClientData.procent_platit || 0}%</span>
-                    </div>
-                    
-                    <div className="progress-bar-container" style={{height: '12px', background: 'rgba(0,0,0,0.1)', borderRadius: '10px', overflow: 'hidden'}}>
-                      <div 
-                        className="progress-bar-fill" 
-                        style={{ 
-                          width: `${badClientData.procent_platit || 0}%`,
-                          height: '100%',
-                          background: 'linear-gradient(90deg, #ff4e00, #d9534f)',
-                          transition: 'width 1s ease-in-out'
-                        }}
-                      ></div>
-                    </div>
-                  </div>
+                  <h1 className="bad-client-name">{badClientData.nume} {badClientData.prenume}</h1>
+                  <p>CNP: {badClientData.cnp}</p>
+                  <p className="danger-text">Restanțe: {badClientData.numar_abonamente_neachitate}</p>
                 </>
-              ) : (
-                <p style={{textAlign: 'center', padding: '20px'}}>Nu s-au găsit clienți cu restanțe.</p>
-              )}
+              ) : <p>Fără restanțe.</p>}
             </div>
             
             <button className="btn-close-ios" onClick={() => setShowBadClient(false)}>
