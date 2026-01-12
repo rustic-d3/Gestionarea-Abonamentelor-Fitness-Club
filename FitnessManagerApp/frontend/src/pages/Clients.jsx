@@ -217,6 +217,7 @@ export default function Clients() {
                   <h1 className="bad-client-name">{badClientData.nume} {badClientData.prenume}</h1>
                   <p>CNP: {badClientData.cnp}</p>
                   <p className="danger-text">Restanțe: {badClientData.numar_abonamente_neachitate}</p>
+                  <p className="danger-text">Procentul achitat: {badClientData.procent_platit}%</p>
                 </>
               ) : <p>Fără restanțe.</p>}
             </div>
