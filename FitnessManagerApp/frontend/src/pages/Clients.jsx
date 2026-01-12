@@ -93,7 +93,7 @@ export default function Clients() {
               <button onClick={sendData} className="icon-btn primary">↑</button>
             </div>
             <div className="form-container">
-              <input placeholder="CNP" className="search-input" onChange={(e) => setFormData({ ...formData, cnp: e.target.value })} />
+              <input placeholder="CNP" maxLength="13" type="text" className="search-input" onChange={(e) => setFormData({ ...formData, cnp: e.target.value })} />
               <div className="input-group">
                 <input placeholder="Nume" className="search-input" onChange={(e) => setFormData({ ...formData, nume: e.target.value })} />
                 <input placeholder="Prenume" className="search-input" onChange={(e) => setFormData({ ...formData, prenume: e.target.value })} />
