@@ -7,9 +7,13 @@ import "../css/clients.css";
 
 export default function Clients() {
   const [showPopup, setShowPopup] = useState(false);
+  const [showPopup2, setShowPopup2] = useState(false);
   const [showBadClient, setShowBadClient] = useState(false);
   const [formData, setFormData] = useState({
     cnp: "", nume: "", prenume: "", adresa: "", telefon: "", disponibil: ""
+  });
+  const [formData2, setFormData2] = useState({
+    cnp: "", serviciu: ""
   });
   const [badClientData, setBadClientData] = useState(null);
   const [loadingBadClient, setLoadingBadClient] = useState(false);
@@ -41,6 +45,17 @@ export default function Clients() {
     }
   }
 
+  async function sendData2() {
+    try {
+      const response = await axios.post("http://localhost:3001/checkChange", formData2);
+      console.log(response.data);
+      alert(`Rest de plată: ${response.data[0]?.rest_de_plata || 0}`);
+      setShowPopup2(false);
+    } catch (error) {
+      alert(error.response?.data?.details || "Eroare.");
+    }
+  }
+
   return (
     <div className="app-wrapper">
       <Header />
@@ -51,6 +66,7 @@ export default function Clients() {
           <div className="panel-actions">
             <button onClick={() => setShowPopup(true)} className="btn-add-ios">+ ADAUGĂ CLIENT</button>
             <button onClick={() => setShowBadClient(true)} className="btn-warning-ios">CEL MAI RESTANT</button>
+            <button onClick={() => setShowPopup2(true)} className="btn-warning-ios">VERIFICARE REST PLATA</button>
           </div>
         </div>
 
@@ -58,6 +74,7 @@ export default function Clients() {
           <NavLink to="/full-paid">FIDELI</NavLink>
           <NavLink to="/full-report">RAPORT DETALIAT</NavLink>
           <NavLink to="/good-clients">VIP</NavLink>
+          
         </div>
         
         {/* CONTAINER PENTRU TABEL CA SĂ NU MAI FIE ALB */}
@@ -84,6 +101,23 @@ export default function Clients() {
               <input placeholder="Adresă" className="search-input" onChange={(e) => setFormData({ ...formData, adresa: e.target.value })} />
               <input placeholder="Telefon" className="search-input" onChange={(e) => setFormData({ ...formData, telefon: e.target.value })} />
               <input placeholder="Disponibil" className="search-input" type="number" onChange={(e) => setFormData({ ...formData, disponibil: e.target.value })} />
+            </div>
+          </div>
+        </div>
+      )}
+      {showPopup2 && (
+        <div className="overlay">
+          <div className="popup form-wide">
+            <div className="popup-header">
+              <button className="icon-btn" onClick={() => setShowPopup2(false)}>✕</button>
+              <h2>Verificare Restanțe</h2>
+              <button onClick={sendData2} className="icon-btn primary">↑</button>
+            </div>
+            <div className="form-container">
+              <input placeholder="CNP" className="search-input" onChange={(e) => setFormData2({ ...formData2, cnp: e.target.value })} />
+              <div className="input-group">
+                <input placeholder="Nume" className="search-input" onChange={(e) => setFormData2({ ...formData2, serviciu: e.target.value })} />
+              </div>
             </div>
           </div>
         </div>

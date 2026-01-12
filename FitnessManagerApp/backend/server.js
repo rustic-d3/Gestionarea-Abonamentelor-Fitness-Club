@@ -97,6 +97,28 @@ app.post("/addSubscription", async (req, res) => {
     });
   }
 });
+app.post("/checkChange", async (req, res) => {
+  const { cnp, serviciu } = req.body;
+
+  if (!cnp || !serviciu) {
+    return res.status(400).json({ error: "Lipsesc datele (cnp sau serviciu)." });
+  }
+
+  try {
+    const response = await sql`
+      SELECT * FROM rest_de_plata(${cnp}, ${serviciu})
+    `;
+    
+    res.json(response); 
+  } catch (err) {
+    console.error("Eroare DB:", err.message);
+    res.status(500).json({
+      error: "Eroare la verificarea restanței.",
+      details: err.message,
+    });
+  }
+});
+
 
 app.post("/addClient", async (req, res) => {
   const { cnp, nume, prenume, adresa, telefon, disponibil } = req.body;
