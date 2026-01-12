@@ -116,7 +116,7 @@ export default function Clients() {
             <div className="form-container">
               <input placeholder="CNP" className="search-input" onChange={(e) => setFormData2({ ...formData2, cnp: e.target.value })} />
               <div className="input-group">
-                <input placeholder="Nume" className="search-input" onChange={(e) => setFormData2({ ...formData2, serviciu: e.target.value })} />
+                <input placeholder="Serviciu" className="search-input" onChange={(e) => setFormData2({ ...formData2, serviciu: e.target.value })} />
               </div>
             </div>
           </div>
