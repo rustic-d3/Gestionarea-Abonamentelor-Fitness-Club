@@ -68,7 +68,7 @@ export default function Clients() {
     }
 
     // 4. Validare Telefon (Minim 10 cifre)
-    if (!formData.telefon || formData.telefon.length < 10) {
+    if (!formData.telefon || formData.telefon.length < 9) {
         newErrors.telefon = "Număr invalid (min 10 cifre).";
         isValid = false;
     }
