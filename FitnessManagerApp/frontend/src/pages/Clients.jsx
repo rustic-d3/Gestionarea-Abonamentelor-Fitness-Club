@@ -142,6 +142,7 @@ export default function Clients() {
                     <span className="identity-label">CEL MAI RESTANT CLIENT:</span>
                     <h1 className="bad-client-name">{badClientData.nume} {badClientData.prenume}</h1>
                     <p className="cnp-sub">CNP: {badClientData.cnp}</p>
+                    <p className="cnp-sub">Nr. abonamente: {badClientData.numar_abonamente_neachitate}</p>
                   </div>
                   <div className="progress-section">
                     <div className="progress-labels">
