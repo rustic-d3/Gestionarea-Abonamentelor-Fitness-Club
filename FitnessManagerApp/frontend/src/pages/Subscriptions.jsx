@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "../components/Header.jsx";
-import "../css/clients.css"; // Importăm stilul comun (Glassmorphism)
+import "../css/clients.css"; // Importăm stilul comun
 
 export default function Subscriptions() {
   const [subscriptions, setSubscriptions] = useState([]);
@@ -11,7 +11,6 @@ export default function Subscriptions() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Presupunem că ai acest endpoint. Dacă nu, trebuie creat în backend.
         const response = await axios.get("http://localhost:3001/subscriptions");
         setSubscriptions(response.data);
       } catch (error) {
@@ -23,6 +22,13 @@ export default function Subscriptions() {
     fetchData();
   }, []);
 
+  // Funcție pentru formatarea datei (ex: 2023-10-05 -> 05/10/2023)
+  const formatDate = (dateString) => {
+    if (!dateString) return "-";
+    const date = new Date(dateString);
+    return date.toLocaleDateString("ro-RO");
+  };
+
   return (
     <div className="app-wrapper">
       <Header />
@@ -33,11 +39,10 @@ export default function Subscriptions() {
           <div className="panel-title-group">
             <h2 className="panel-title">Istoric Abonamente Vândute</h2>
             <p style={{ opacity: 0.6, fontSize: '14px', marginTop: '5px' }}>
-              Lista completă a tranzacțiilor efectuate
+              Lista completă a tranzacțiilor (Sursă: Tabela SQL `abonamente`)
             </p>
           </div>
           
-          {/* Aici poți pune butoane de filtrare dacă dorești pe viitor */}
           <div className="panel-actions">
             <div className="stat-badge" style={{ 
                 background: 'rgba(255,255,255,0.3)', 
@@ -60,34 +65,52 @@ export default function Subscriptions() {
               <thead>
                 <tr>
                   <th style={styles.th}>CNP Client</th>
-                  <th style={styles.th}>Tip Abonament</th>
-                  <th style={styles.th}>Preț Standard</th>
-                  <th style={styles.th}>Sumă Încasată</th>
+                  <th style={styles.th}>Serviciu</th>
+                  <th style={styles.th}>Data</th>
+                  <th style={styles.th}>Preț</th>
+                  <th style={styles.th}>Încasat</th>
                   <th style={styles.th}>Status</th>
                 </tr>
               </thead>
               <tbody>
-                {subscriptions.map((sub, index) => (
-                  <tr key={index} style={styles.tr}>
-                    <td style={styles.td}>{sub.cnp}</td>
-                    <td style={styles.td}>
-                      <span style={getBadgeStyle(sub.subscription)}>
-                        {sub.subscription}
-                      </span>
-                    </td>
-                    <td style={styles.td}>{sub.price} RON</td>
-                    <td style={styles.td} className={sub.finalPrice < sub.price ? "danger-text" : ""}>
-                      {sub.finalPrice} RON
-                    </td>
-                    <td style={styles.td}>
-                        {sub.finalPrice >= sub.price ? (
-                            <span style={{color: 'green', fontWeight: '800'}}>ACHITAT</span>
-                        ) : (
-                            <span style={{color: '#d9534f', fontWeight: '800'}}>RESTANT</span>
-                        )}
-                    </td>
-                  </tr>
-                ))}
+                {subscriptions.map((sub, index) => {
+                  // Calculăm statusul pe baza coloanelor din SQL
+                  const isRestant = Number(sub.suma_incasata) < Number(sub.pret);
+
+                  return (
+                    <tr key={index} style={styles.tr}>
+                      {/* CNP */}
+                      <td style={styles.td}>{sub.cnp}</td>
+                      
+                      {/* SERVICIU (Mapped to 'serviciu') */}
+                      <td style={styles.td}>
+                        <span style={getBadgeStyle(sub.serviciu)}>
+                          {sub.serviciu}
+                        </span>
+                      </td>
+
+                      {/* DATA (Mapped to 'data') */}
+                      <td style={styles.td}>{formatDate(sub.data)}</td>
+
+                      {/* PRET (Mapped to 'pret') */}
+                      <td style={styles.td}>{sub.pret} RON</td>
+
+                      {/* SUMA INCASATA (Mapped to 'suma_incasata') */}
+                      <td style={styles.td} className={isRestant ? "danger-text" : ""}>
+                        {sub.suma_incasata} RON
+                      </td>
+
+                      {/* STATUS LOGIC */}
+                      <td style={styles.td}>
+                          {!isRestant ? (
+                              <span style={{color: 'green', fontWeight: '800'}}>ACHITAT</span>
+                          ) : (
+                              <span style={{color: '#d9534f', fontWeight: '800'}}>RESTANT</span>
+                          )}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           ) : (
@@ -101,8 +124,7 @@ export default function Subscriptions() {
   );
 }
 
-// Stiluri inline simple pentru a menține consistența cu clients.css
-// (Acestea pot fi mutate în CSS dacă preferi)
+// Stiluri inline (aceleași ca înainte)
 const styles = {
   th: {
     textAlign: 'left',
@@ -125,7 +147,7 @@ const styles = {
   }
 };
 
-// Funcție mică pentru a colora eticheta abonamentului
+// Funcție pentru badge-uri (folosește 'serviciu' din DB)
 const getBadgeStyle = (type) => {
   const base = {
     padding: '6px 12px',
@@ -135,6 +157,7 @@ const getBadgeStyle = (type) => {
     textTransform: 'uppercase',
   };
   
+  // Verificăm string-urile exact cum sunt salvate în baza de date
   if (type === 'Sala') return { ...base, background: '#e3f2fd', color: '#1565c0' };
   if (type === 'Jogging') return { ...base, background: '#e8f5e9', color: '#2e7d32' };
   if (type === 'Sauna') return { ...base, background: '#fff3e0', color: '#ef6c00' };
