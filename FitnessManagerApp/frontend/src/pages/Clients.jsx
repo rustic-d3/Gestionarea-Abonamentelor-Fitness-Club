@@ -77,13 +77,13 @@ export default function Clients() {
           
         </div>
         
-        {/* CONTAINER PENTRU TABEL CA SĂ NU MAI FIE ALB */}
+        {}
         <div className="glass-table-container">
           <AllUsersTable />
         </div>
       </div>
 
-      {/* MODAL ADAUGARE CLIENT */}
+      {}
       {showPopup && (
         <div className="overlay">
           <div className="popup form-wide">
@@ -123,7 +123,7 @@ export default function Clients() {
         </div>
       )}
 
-      {/* MODAL ALERTĂ RESTANȚIER */}
+      {}
       {showBadClient && (
         <div className="overlay">
           <div className="popup bad-client-alert">
@@ -156,7 +156,7 @@ export default function Clients() {
               ) : <p>Fără restanțe.</p>}
             </div>
             
-            {/* BUTONUL REPARAT AICI */}
+            {}
             <button className="btn-close-ios" onClick={() => setShowBadClient(false)}>
               ÎNCHIDE
             </button>

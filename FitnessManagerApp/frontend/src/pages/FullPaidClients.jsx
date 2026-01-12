@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { NavLink } from "react-router-dom"; // Navigare fără refresh
+import { NavLink } from "react-router-dom";
 import Header from "../components/Header.jsx";
 import ClientsFullSubscriptionTable from "../components/ClinetsFullSubscribtionTable";
-import "../css/clients.css"; // Presupunem că aici avem stilul Glassmorphism
+import "../css/clients.css"; 
 
 export default function FullPaidClients() {
   const [showPopup, setShowPopup] = useState(false);
@@ -16,13 +16,12 @@ export default function FullPaidClients() {
     disponibil: "",
   });
 
-  // Funcție pentru trimiterea datelor cu feedback îmbunătățit
   async function sendData() {
     try {
       const response = await axios.post("http://localhost:3001/addClient", formData);
       alert("Client adăugat cu succes!");
-      setShowPopup(false); // Închidem modalul după succes
-      window.location.reload(); // Refresh pentru a vedea datele noi în tabel
+      setShowPopup(false); 
+      window.location.reload(); 
     } catch (error) {
       const errorMessage = error.response?.data?.details || "Eroare la server.";
       alert(errorMessage);
@@ -34,7 +33,7 @@ export default function FullPaidClients() {
       <Header />
       
       <div className="glass-container">
-        {/* Navigarea de tip Tab-uri iOS */}
+        {}
         <div className="report-tabs">
           <NavLink to="/full-paid" className={({ isActive }) => isActive ? "tab-active" : ""}>
             Clienți Fideli
@@ -53,7 +52,7 @@ export default function FullPaidClients() {
         <ClientsFullSubscriptionTable />
       </div>
 
-      {/* MODAL ADĂUGARE CLIENT - Stil iPadOS */}
+      {}
       {showPopup && (
         <div className="overlay">
           <div className="popup form-wide">

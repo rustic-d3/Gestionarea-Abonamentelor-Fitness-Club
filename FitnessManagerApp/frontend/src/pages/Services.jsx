@@ -43,7 +43,7 @@ export default function Services() {
         <h1 className="services-title">Alege Planul Tău</h1>
         
         <div className="cards-container">
-          {/* CARD SALA */}
+          {}
           <div className="card glass-card">
             <div className="card-handle"></div>
             <div className="card-header" style={{ justifyContent: 'center' }}>
@@ -63,7 +63,7 @@ export default function Services() {
             </div>
           </div>
 
-          {/* CARD JOGGING */}
+          {}
           <div className="card glass-card">
             <div className="card-handle"></div>
             <div className="card-header" style={{ justifyContent: 'center' }}>
@@ -83,7 +83,7 @@ export default function Services() {
             </div>
           </div>
 
-          {/* CARD SAUNA */}
+          {}
           <div className="card glass-card">
             <div className="card-handle"></div>
             <div className="card-header" style={{ justifyContent: 'center' }}>
@@ -105,7 +105,7 @@ export default function Services() {
         </div>
       </div>
 
-      {/* POPUP ACHIZIȚIE */}
+      {}
       {showPopup && (
         <div className="overlay">
           <div className="popup">

@@ -1,13 +1,11 @@
 :root {
   --font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  /* More vibrant gradient */
   --bg-gradient: linear-gradient(120deg, #FFD066 0%, #FF6B4E 60%, #E63946 100%);
-  /* Whiter, cleaner glass effect */
   --card-bg: rgba(255, 255, 255, 0.45);
   --card-border: 1px solid rgba(255, 255, 255, 0.4);
   --text-color: #1a1a1a;
   --accent-color: #f08080;
-  --button-color: #EBB6A8; /* Cleaner Salmon */
+  --button-color: #EBB6A8; 
 }
 
 body {
@@ -37,7 +35,7 @@ body {
 .nav-link {
   text-decoration: none;
   color: #222;
-  font-weight: 800; /* Bolder */
+  font-weight: 800; 
   text-transform: uppercase;
   font-size: 0.9rem;
   letter-spacing: 0.05em;
@@ -58,9 +56,9 @@ body {
 .cards-container {
   display: flex;
   justify-content: center;
-  align-items: center; /* Vertically center in the remaining space */
+  align-items: center; 
   flex-grow: 1;
-  gap: 2.5rem; /* More gap */
+  gap: 2.5rem; 
   padding: 2rem;
   flex-wrap: wrap;
 }
@@ -70,9 +68,9 @@ body {
   background: var(--card-bg);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  border-radius: 30px; /* Rounder */
+  border-radius: 30px; 
   border: var(--card-border);
-  width: 280px; /* Slightly narrower */
+  width: 280px; 
   min-height: 350px; 
   padding: 1.5rem;
   display: flex;
@@ -106,12 +104,12 @@ body {
 }
 
 .icon-close {
-  background-color: rgba(0, 0, 0, 0.06); /* Lighter */
+  background-color: rgba(0, 0, 0, 0.06);
   color: #666;
 }
 
 .icon-arrow {
-  background-color: #F28C8C; /* Softer red/pink */
+  background-color: #F28C8C; 
   color: white;
   box-shadow: 0 2px 5px rgba(242, 140, 140, 0.4);
 }
@@ -128,22 +126,22 @@ body {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center content vertically */
+  justify-content: center;
   margin-bottom: 1rem;
 }
 
 .card-features {
     display: flex;
-    flex-direction: column; /* Aceasta aliniază elementele pe verticală */
+    flex-direction: column;
     list-style: none;
     padding: 0;
     margin: 0;
-    width: 100%; /* Asigură că lista ocupă toată lățimea disponibilă */
+    width: 100%; 
 }
 
 .card-features li {
     display: flex;
-    align-items: flex-start; /* Aliniază bullet-ul cu începutul textului */
+    align-items: flex-start; 
     justify-content: flex-start;
     text-align: left;
     margin-bottom: 0.8rem;
@@ -156,7 +154,7 @@ body {
 .card-features li::before {
     content: "•";
     margin-right: 0.6rem;
-    font-size: 1.2rem; /* Larger bullet */
+    font-size: 1.2rem; 
     line-height: 0.8rem;
     color: #333;
 }
@@ -286,7 +284,7 @@ body {
 }
 
 .price-button {
-    text-decoration: none !important; /* Scoatem underline-ul dacă existat */
+    text-decoration: none !important; 
     background-color: #3b2b1f !important;
     color: white !important;
     padding: 12px 25px !important;

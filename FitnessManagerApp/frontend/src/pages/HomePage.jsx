@@ -3,16 +3,15 @@ import { useNavigate } from "react-router-dom";
 import Background1 from "../assets/backgrounds/Background1.jpg";
 import Header from '../components/Header.jsx';
 
-// Definim un obiect pentru stiluri pentru a curăța return-ul (sau folosim CSS separat)
 const styles = {
   heroContainer: {
     backgroundImage: `url(${Background1})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     minHeight: "100vh",
-    display: "flex", // Folosim Flexbox în loc de Absolute pentru responsivitate
+    display: "flex", 
     flexDirection: "column",
-    padding: "0 10%", // Procentual pentru a se adapta la ecran
+    padding: "0 10%", 
   },
   contentBox: {
     marginTop: "auto",
@@ -22,7 +21,7 @@ const styles = {
   title: {
     fontFamily: "'Montserrat Subrayada', sans-serif",
     fontWeight: 700,
-    fontSize: "clamp(30px, 5vw, 40px)", // Font care se micșorează pe mobil
+    fontSize: "clamp(30px, 5vw, 40px)", 
     color: "#070707",
     margin: 0,
     lineHeight: "1.1"
@@ -31,7 +30,7 @@ const styles = {
     marginTop: "30px",
     fontFamily: "'Montserrat Subrayada', sans-serif",
     backgroundColor: "#007aff",
-    color: "#ffffff", // Alb pentru contrast mai bun pe albastru
+    color: "#ffffff", 
     padding: "12px 35px",
     border: "none",
     borderRadius: "8px",
@@ -43,7 +42,6 @@ const styles = {
 export default function HomePage() {
   const navigate = useNavigate();
 
-  // Simplificăm funcția: navigăm direct către ruta primită
   const goTo = (route) => navigate(`/${route}`);
 
   return (
@@ -67,7 +65,7 @@ export default function HomePage() {
         <button 
           onClick={() => goTo("services")} 
           className="btn-ios-hero"
-          style={{ marginTop: "30px" }} // Adăugat puțin spațiu
+          style={{ marginTop: "30px" }} 
         >
           ÎNCEPE AZI!
         </button>

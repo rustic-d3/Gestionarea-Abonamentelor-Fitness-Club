@@ -127,7 +127,7 @@
 /* 3. CAPUL DE TABEL (HEADER) - AICI ERA PROBLEMA */
 .glass-table-container .MuiTableCell-head,
 .table-wrapper .MuiTableCell-head {
-    color: rgba(59, 43, 31, 0.7) !important; /* Text maro deschis */
+    color: rgba(59, 43, 31, 0.7) !important;
     font-weight: 800 !important;
     text-transform: uppercase !important;
     font-size: 12px !important;
