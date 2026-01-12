@@ -32,7 +32,6 @@ export default function Subscriptions() {
       <Header />
 
       <div className="glass-container">
-        {}
         <div className="panel-header">
           <div className="panel-title-group">
             <h2 className="panel-title">Istoric Abonamente Vândute</h2>
@@ -54,7 +53,6 @@ export default function Subscriptions() {
           </div>
         </div>
 
-        {}
         <div className="glass-table-container" style={{ marginTop: '20px' }}>
           {loading ? (
             <div style={{ textAlign: 'center', padding: '40px' }}>Se încarcă datele...</div>
@@ -73,31 +71,19 @@ export default function Subscriptions() {
               <tbody>
                 {subscriptions.map((sub, index) => {
                   const isRestant = Number(sub.suma_incasata) < Number(sub.pret);
-
                   return (
                     <tr key={index} style={styles.tr}>
-                      {}
                       <td style={styles.td}>{sub.cnp}</td>
-                      
-                      {}
                       <td style={styles.td}>
                         <span style={getBadgeStyle(sub.serviciu)}>
                           {sub.serviciu}
                         </span>
                       </td>
-
-                      {}
                       <td style={styles.td}>{formatDate(sub.data)}</td>
-
-                      {}
                       <td style={styles.td}>{sub.pret} RON</td>
-
-                      {}
                       <td style={styles.td} className={isRestant ? "danger-text" : ""}>
                         {sub.suma_incasata} RON
                       </td>
-
-                      {}
                       <td style={styles.td}>
                           {!isRestant ? (
                               <span style={{color: 'green', fontWeight: '800'}}>ACHITAT</span>
@@ -151,10 +137,8 @@ const getBadgeStyle = (type) => {
     fontWeight: '800',
     textTransform: 'uppercase',
   };
-  
   if (type === 'Sala') return { ...base, background: '#e3f2fd', color: '#1565c0' };
   if (type === 'Jogging') return { ...base, background: '#e8f5e9', color: '#2e7d32' };
   if (type === 'Sauna') return { ...base, background: '#fff3e0', color: '#ef6c00' };
-  
   return base;
 };
