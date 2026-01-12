@@ -124,10 +124,10 @@
     font-weight: 600 !important;
 }
 
-/* 3. CAPUL DE TABEL (HEADER) - AICI ERA PROBLEMA */
+/* 3. CAPUL DE TABEL (HEADER) */
 .glass-table-container .MuiTableCell-head,
 .table-wrapper .MuiTableCell-head {
-    color: rgba(59, 43, 31, 0.7) !important; /* Text maro deschis */
+    color: rgba(59, 43, 31, 0.7) !important;
     font-weight: 800 !important;
     text-transform: uppercase !important;
     font-size: 12px !important;
@@ -295,6 +295,21 @@
 .btn-close-ios:hover {
     background: rgba(0, 0, 0, 0.12);
     transform: scale(0.98);
+}
+
+/* Erori de Validare Formular */
+.error-msg {
+    color: #d9534f; 
+    font-size: 12px;
+    font-weight: 700;
+    margin-left: 10px;
+    margin-top: 5px;
+    display: block;
+}
+
+.input-error {
+    border: 2px solid #d9534f !important; 
+    background: rgba(217, 83, 79, 0.1);
 }
 
 /* Animații */

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { NavLink } from 'react-router-dom'; // Navigare modernă fără refresh
+import { NavLink } from 'react-router-dom'; 
 import GoodClientsTable from '../components/GoodClientsTable.jsx';
 import Header from '../components/Header.jsx';
-import '../css/clients.css'; // Stilul unitar pentru panouri și modale
+import '../css/clients.css'; 
 
 export default function GoodClientsPage() {
   const [showPopup, setShowPopup] = useState(false);
@@ -16,13 +16,12 @@ export default function GoodClientsPage() {
     disponibil: "",
   });
 
-  // Funcție pentru trimiterea datelor noului client
   async function sendData() {
     try {
       await axios.post("http://localhost:3001/addClient", formData);
       alert("Client adăugat cu succes!");
       setShowPopup(false);
-      window.location.reload(); // Reîncărcare pentru a actualiza tabelele
+      window.location.reload(); 
     } catch (error) {
       const errorMessage = error.response?.data?.details || "Eroare la server.";
       alert(errorMessage);
@@ -34,7 +33,7 @@ export default function GoodClientsPage() {
       <Header />
       
       <div className="glass-container">
-        {/* Navigarea de tip Tab-uri iOS (iPadOS Style) */}
+        {}
         <div className="report-tabs">
           <NavLink to="/full-paid">Clienți Fideli</NavLink>
           <NavLink to="/full-report">Raport Detaliat</NavLink>
@@ -50,11 +49,11 @@ export default function GoodClientsPage() {
             <h2 className="panel-title">Clienți Eligibili pentru Bonus (VIP)</h2>
         </div>
 
-        {/* Tabelul cu clienții care îndeplinesc criteriile Cerinței 9 */}
+        {}
         <GoodClientsTable />
       </div>
 
-      {/* MODAL ADĂUGARE CLIENT (Consistent cu restul aplicației) */}
+      {}
       {showPopup && (
         <div className="overlay">
           <div className="popup form-wide">

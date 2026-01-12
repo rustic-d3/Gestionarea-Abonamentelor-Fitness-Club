@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { NavLink } from "react-router-dom"; // Use NavLink for seamless transitions
+import { NavLink } from "react-router-dom"; 
 import FullReportTable from "../components/FullReportTable";
 import Header from "../components/Header.jsx";
-import "../css/clients.css"; // Reuse the established glassmorphism styles
+import "../css/clients.css";
 
 export default function FullReportPage() {
   const [showPopup, setShowPopup] = useState(false);
@@ -21,7 +21,7 @@ export default function FullReportPage() {
       await axios.post("http://localhost:3001/addClient", formData);
       alert("Client adăugat cu succes!");
       setShowPopup(false);
-      window.location.reload(); // Refresh the report data
+      window.location.reload(); 
     } catch (error) {
       const errorMessage = error.response?.data?.details || "Eroare la server.";
       alert(errorMessage);
@@ -33,7 +33,7 @@ export default function FullReportPage() {
       <Header />
       
       <div className="glass-container">
-        {/* iOS-Style Navigation Tabs */}
+        {}
         <div className="report-tabs">
           <NavLink to="/full-paid">Clienți Fideli</NavLink>
           <NavLink to="/full-report" className={({ isActive }) => isActive ? "tab-active" : ""}>
@@ -49,11 +49,11 @@ export default function FullReportPage() {
             <h2 className="panel-title">Raport Complet Activitate</h2>
         </div>
 
-        {/* The Detailed Table */}
+        {}
         <FullReportTable />
       </div>
 
-      {/* MODAL: ADD CLIENT (iPadOS Style) */}
+      {}
       {showPopup && (
         <div className="overlay">
           <div className="popup form-wide">
